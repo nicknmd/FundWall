@@ -1,0 +1,34 @@
+//
+// Base
+// ---------------------------------------------------------------------------
+
+body,
+html {
+  padding: 0px;
+  margin: 0px;
+  font-family: $roboto;
+  -webkit-font-smoothing: antialiased;
+  color: $text-color;
+  background: $bg-color;
+  background: #000;
+  min-width: 1000px;
+}
+
+body {
+  font-size: 60%;
+}
+
+@media screen and (min-width: 1000px) {   body {   font-size: 60%;   }}
+@media screen and (min-width: 1100px) {   body {   font-size: 69%;   }}
+@media screen and (min-width: 1200px) {   body {   font-size: 78%;   }}
+@media screen and (min-width: 1300px) {   body {   font-size: 87%;   }}
+@media screen and (min-width: 1400px) {   body {   font-size: 96%;   }}
+@media screen and (min-width: 1500px) {   body {   font-size: 104%;  }}
+@media screen and (min-width: 1600px) {   body {   font-size: 113%;  }}
+@media screen and (min-width: 1700px) {   body {   font-size: 122%;  }}
+@media screen and (min-width: 1800px) {   body {   font-size: 130%;  }}
+@media screen and (min-width: 1900px) {   body {   font-size: 139%;  }}
+@media screen and (min-width: 2000px) {   body {   font-size: 150%;  }}
+@media screen and (min-width: 2100px) {   body {   font-size: 158%;  }}
+@media screen and (min-width: 2200px) {   body {   font-size: 167%;  }}
+@media screen and (min-width: 2300px) {   body {   font-size: 176%;  }}

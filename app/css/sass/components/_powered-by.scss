@@ -1,0 +1,29 @@
+//
+// Powered by
+// ---------------------------------------------------------------------------
+
+.powered-by {
+  background: #FAFAFA;
+  border-top: #F1F1F1 solid 2px;
+  height: 60%;
+  text-align: center;
+  font-size: 120%;
+  @include box-sizing(border-box);
+  
+  h3 {
+    padding: 30px;
+    font-size: 120%;
+  }
+  
+  strong {
+    display: inline-block;
+    background: url('../img/digiti.svg') no-repeat;
+    background-size: contain;
+    color: transparent;
+    font-size: 180%;
+    line-height: 120%;
+    vertical-align: baseline;
+    position: relative;
+    top: -2px;
+  }
+}

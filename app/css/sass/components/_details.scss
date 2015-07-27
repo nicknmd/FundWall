@@ -1,0 +1,45 @@
+//
+// Details
+// ---------------------------------------------------------------------------
+
+.details {
+  background: #FAFAFA;
+  border-bottom: #F1F1F1 solid 2px;
+  @include flexbox();
+  @include box-sizing(border-box);
+  
+  li {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    @include flex(1);
+    @include box-sizing(border-box);
+    
+    &:after {
+      content: "";
+      position: absolute;
+      right: -1px; top: 15%;
+      width: 2px; height: 70%;
+      background: #DADADA;
+    }
+    
+    &:last-child:after {
+      display: none;
+    }
+    
+    h4 {
+      color: #4D4D4D;
+      font-size: 360%;
+      font-weight: 500;
+      @include transition(font-size .5s);
+    }
+    
+    p {
+      padding-top: 15px;
+      font-size: 180%;
+      font-weight: 300;
+      color: #585858;
+      @include transition(font-size .5s);
+    }
+  }
+}

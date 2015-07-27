@@ -1,0 +1,36 @@
+//
+// Url
+// ---------------------------------------------------------------------------
+
+.url {
+  display: block;
+  height: 63%;
+  text-align: center;
+  padding: 60px 40px;
+  @include box-sizing(border-box);
+  
+  .qr {
+    display: block;
+    height: 85%;
+    background: center center no-repeat;
+    background-size: contain;
+    opacity: 0.8;
+  }
+  
+  p {
+    padding-top: 40px;
+    font-size: 170%;
+    color: #4D4D4D;
+  }
+}
+
+@media screen and (max-width:1600px) {
+  .url {
+    padding: 35px 40px;
+    height: 60%;
+    
+    p {
+      padding-top: 30px;
+    }
+  }
+}

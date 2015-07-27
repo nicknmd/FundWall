@@ -1,0 +1,125 @@
+//
+// Stream
+// ---------------------------------------------------------------------------
+
+.stream {
+  padding-top: 40px;
+  
+  li {
+    display: block;
+    position: relative;
+    background: #FFF;
+    border-radius: 10px;  
+    margin: 10px 50px;
+    padding: 30px 23% 30px 30px;
+    border: solid 2px #D5D5D5;
+    @include box-sizing(border-box);
+    @include transition(all 1s);
+    
+    small {
+      position: absolute;
+      right: 20%; top:30px;
+      padding: 0px 30px 0px 0px;
+      color: #B1B1B1;
+      font-size: 110%;
+      @include transition(all 1s);
+    }
+    
+    h3 {
+      font-size: 200%;
+      color: #707070;
+      padding-bottom: 10px;
+      @include transition(all 1s);
+    }
+    
+    p {
+      display: block;
+      color: #969696;
+      font-weight: 400;
+      font-size: 120%;
+      line-height: 120%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @include transition(all 1s);
+    }
+    
+    .amount {
+      display: block;
+      position: absolute;
+      right: -2px; top:-2px;
+      background: #979797;
+      height: 100%;
+      width: 20%;
+      padding: 2px 2px;
+      border-radius: 0px 10px 10px 0px;
+      @include transition(all 1s);
+      
+      span {
+        position: relative;
+        top: 50%;
+        display: block;
+        width: 100%;
+        text-align: center;
+        color: #FFF;
+        font-size: 250%;
+        font-weight: 500;
+        @include transform(translateY(-50%));
+      }
+    }
+  }
+  li:first-child {
+    border-color: #539F69;
+    border-width: 4px;
+    margin:  -5px 30px 10px 30px;
+    
+    h3 {
+      color: #539F69;
+      font-size: 220%;
+    }
+    
+    p {
+      color: #539F69;
+      font-size: 140%;
+    }
+    
+    small {
+      color: #539F69;
+      padding: 0px 38px 0px 0px;
+    }
+    
+    .amount {
+      background: #539F69;
+      padding: 2px 8px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .stream { 
+    li {
+      padding: 15px 23% 15px 15px;
+      margin: 10px 30px;
+      
+      small {
+        top: 20px;
+        padding: 0px 20px 0px 0px;
+      }
+    }
+    li:first-child {
+      margin: -15px 20px 10px 20px;
+    }
+  }
+}
+
+@media screen and (min-width:1700px) {
+  .stream { 
+    li {
+      margin: 20px 50px;
+      padding: 30px 23% 30px 40px;
+    }
+    small {
+      padding: 0px 40px 0px 0px;
+    }
+  }
+}

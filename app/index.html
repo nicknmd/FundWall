@@ -1,76 +1,67 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
-
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <div class="container">
-          <div class="col-md-4 col-md-offset-4">
-              <div class="form-area">  
-                  <form role="form">
-                  <br style="clear:both">
-                              <h3 style="margin-bottom: 25px; text-align: center;">FundWall</h3>
-                      <div class="form-group">
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount" required>
-                    </div>
-                              <div class="form-group">
-                              <textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="100" rows="4"></textarea>
-                                  <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>                    
-                              </div>
-                      
-                  <button type="button" id="donate" name="donate" class="btn btn-primary pull-right">Donate</button>
-                  </form>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="all">
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+  </head>
+  <body>
+    <div class="wall">
+      <div class="content">
+        <header style="background-image: url('assets/img/header.jpg')">
+          <div class="mainbar">
+            <img src="assets/img/logo.svg" class="logo"/>
+            <h1>Help us raise money to support Belgium students in the USA.</h1>
+            <h2>
+              <a href="http://belcham.org/donate" class="js-url">http://belcham.org/donate</a>
+            </h2>
+          </div>
+          <div class="sidebar">
+            <div>
+              <h3 class="js-amount">$0</h3>
+              <p>Raised from <strong class="js-goal">$0</strong></p>
+            </div>
+          </div>
+        </header>
+        <div class="data">
+          <div class="mainbar">
+            <ul class="stream">
+              <!--<li>
+                <h3>James Cameron</h3>
+                <small>10 Minutes Ago</small>
+                <p>Let's make this happen!</p>
+                <div class="amount"><span>$50</span></div>
+              </li>-->
+            </ul>
+            <div class="row donations"></div>
+          </div>
+          <div class="sidebar">
+            <ul class="details">
+              <li>
+                <h4 class="js-donations">0</h4>
+                <p>Donations</p>
+              </li>
+              <li>
+                <h4 class="js-time">00:00</h4>
+                <p>Hours left</p>
+              </li>
+            </ul>
+            <div class="url">
+              <div class="qr js-qr" style="background-image:url('https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=http://belcham.org/donate');">
               </div>
+              <p class="js-url">http://belcham.org/donate</p>
+            </div>
+            <div class="powered-by">
+              <h3>Powered by <strong>Digiti</strong></h3>
+            </div>
           </div>
         </div>
-
-   <!-- /container -->        <script src="js/vendor/jquery-1.11.2.min.js"></script>
-        
-
-        <script src="js/vendor/bootstrap.min.js"></script>
-
-        <script src="js/main.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
-    </body>
+      </div>
+    </div>
+    
+    <script src="js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="js/receive.js"></script>
+    
+  </body>
 </html>

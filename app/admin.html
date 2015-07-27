@@ -23,7 +23,6 @@
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
     </head>
     <body>
@@ -34,42 +33,25 @@
         <div class="container">
           <div class="col-md-4 col-md-offset-4">
               <div class="form-area">  
- 
-                      <form action="" method="POST" id="payment-form">
-                        <span class="payment-errors"></span>
-                        
-                        <div class="form-row">
-                          <label>
-                            <span>Amount</span>
-                            <input type="text" size="20" data-stripe="number"/>
-                          </label>
-                        </div>
-
-                        <div class="form-row">
-                          <label>
-                            <span>Card Number</span>
-                            <input type="text" size="20" data-stripe="number"/>
-                          </label>
-                        </div>
-                     
-                        <div class="form-row">
-                          <label>
-                            <span>CVC</span>
-                            <input type="text" size="4" data-stripe="cvc"/>
-                          </label>
-                        </div>
-                     
-                        <div class="form-row">
-                          <label>
-                            <span>Expiration (MM/YYYY)</span>
-                            <input type="text" size="2" data-stripe="exp-month"/>
-                          </label>
-                          <span> / </span>
-                          <input type="text" size="4" data-stripe="exp-year"/>
-                        </div>
-                     
-                        <button type="submit">Submit Payment</button>
-                      </form>
+                  <form role="form">
+                  <br style="clear:both">
+                              <h3 style="margin-bottom: 25px; text-align: center;">FundWall</h3>
+                      <div class="form-group">
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount" required>
+                    </div>
+                              <div class="form-group">
+                              <textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="100" rows="4"></textarea>
+                                  <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>                    
+                              </div>
+                      
+                  <button type="button" id="donate" name="donate" class="btn btn-primary pull-right">Donate</button>
+                  </form>
               </div>
           </div>
         </div>
@@ -79,7 +61,7 @@
 
         <script src="js/vendor/bootstrap.min.js"></script>
 
-        <script src="js/donate.js"></script>
+        <script src="js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
