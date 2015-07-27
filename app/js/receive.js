@@ -6,6 +6,8 @@ $(document).ready(function(){
     });
 
     function displayDonation(name, email, amount, message) {
+        message = decodeURI(message);
+        name = decodeURI(name); 
         $('.donations').prepend('<div class="col-sm-6 col-md-6 col-md-offset-3"><div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><span class="glyphicon glyphicon-usd"></span><strong>'+amount+'</strong> gift<hr class="message-inner-separator"><p><i>Message: '+message+'</i><br>Powered by <strong>'+name+'</strong></p></div></div>').slideDown();
     };
 
