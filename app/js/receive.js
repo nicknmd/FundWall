@@ -7,6 +7,7 @@ $(document).ready(function(){
   var totalAmount = 0;
   var goal = 30000;
   var totalDonations = 0;
+  var donations = [];
   
   function parseCurrency(amount){
     amount = ("" + amount).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "." });
@@ -21,10 +22,35 @@ $(document).ready(function(){
   function displayDonation(name, email, amount, message) {
     message = decodeURI(message);
     name = decodeURI(name); 
+    
+    appendDonation(
+      {
+        "name" : name,
+        "email" : email,
+        "amount" : amount,
+        "message" : message
+      }
+    )
+    
     upDateTotal(parseInt(amount));
-    upDateAmount()
-    $('.stream').prepend('<li><h3>'+name+'</h3><small></small><p>'+message+'</p><div class="amount"><span>'+parseCurrency(amount)+'</span></div></li>').slideDown();
+    upDateAmount();
+    upDateWall();
   };
+  
+  function appendDonation(donation) {
+    donations.push(donation);
+    donations.sort(function(a, b){
+      return parseFloat(a.amount) - parseFloat(b.amount);
+    });
+  }
+  
+  function upDateWall(){
+    $('.stream').html('');
+    for(i = 0; i < donations.length; i++) {
+      var ranking = donations.length - i;
+      $('.stream').prepend('<li><div class="ranking">#'+ranking+'</div><h3>'+donations[i].name+'</h3><small></small><p>'+donations[i].message+'</p><div class="amount"><span>'+parseCurrency(donations[i].amount)+'</span></div></li>');
+    }
+  }
   
   function upDateTotal(amount) {
     totalAmount += amount;

@@ -11,10 +11,17 @@
     background: #FFF;
     border-radius: 10px;  
     margin: 10px 50px;
-    padding: 30px 23% 30px 30px;
+    padding: 25px 23% 25px 8%;
     border: solid 2px #D5D5D5;
     @include box-sizing(border-box);
     @include transition(all 1s);
+    
+    .ranking {
+      font-size: 200%;
+      position: absolute;
+      left: 2%; top: 30px;
+      color: #B1B1B1;
+    }
     
     small {
       position: absolute;
@@ -69,17 +76,21 @@
     }
   }
   li:first-child {
-    border-color: #539F69;
-    border-width: 4px;
+    border-color: #3EB8DD;
+    border-width: 6px;
     margin:  -5px 30px 10px 30px;
     
+    .ranking {
+      color: #3EB8DD;
+    }
+    
     h3 {
-      color: #539F69;
+      color: #3EB8DD;
       font-size: 220%;
     }
     
     p {
-      color: #539F69;
+      color: #3EB8DD;
       font-size: 140%;
     }
     
@@ -89,7 +100,7 @@
     }
     
     .amount {
-      background: #539F69;
+      background: #3EB8DD;
       padding: 2px 8px;
     }
   }
@@ -98,7 +109,7 @@
 @media screen and (max-width: 1200px) {
   .stream { 
     li {
-      padding: 15px 23% 15px 15px;
+      padding: 15px 23% 15px 8%;
       margin: 10px 30px;
       
       small {
@@ -116,7 +127,7 @@
   .stream { 
     li {
       margin: 20px 50px;
-      padding: 30px 23% 30px 40px;
+      padding: 25px 23% 25px 8%;
     }
     small {
       padding: 0px 40px 0px 0px;
