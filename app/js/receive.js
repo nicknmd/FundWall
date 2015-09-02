@@ -8,6 +8,11 @@ $(document).ready(function(){
   var goal = 30000;
   var totalDonations = 0;
   var donations = [];
+  var pageload = true;
+  
+  setTimeout(function(){
+    pageload = false;
+  }, 1000);
   
   function parseCurrency(amount){
     amount = ("" + amount).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "." });
@@ -22,7 +27,6 @@ $(document).ready(function(){
   function displayDonation(name, email, amount, message) {
     message = decodeURI(message);
     name = decodeURI(name); 
-    
     appendDonation(
       {
         "name" : name,
@@ -31,7 +35,6 @@ $(document).ready(function(){
         "message" : message
       }
     )
-    
     upDateTotal(parseInt(amount));
     upDateAmount();
     upDateWall();
