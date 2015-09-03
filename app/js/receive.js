@@ -4,20 +4,16 @@ $(document).ready(function(){
   
   var currency = "$";
   var url = "http://belcham.org/donate";
-  var totalAmount = 0;
-  var goal = 30000;
-  var totalDonations = 0;
   var donations = [];
-  var pageload = true;
+  var totalAmount = 0;
+  var totalDonations = 0;
+  var goal = 30000;
   
+  var pageload = true;
   setTimeout(function(){
     pageload = false;
+    //$('.overlay').addClass("show animate-in");
   }, 1000);
-  
-  function parseCurrency(amount){
-    amount = ("" + amount).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "." });
-    return currency+amount;
-  }
   
   myDataRef.on('child_added', function(snapshot) {
     var donation = snapshot.val();
@@ -63,6 +59,11 @@ $(document).ready(function(){
   function upDateAmount() {
     totalDonations++;
     $('.js-donations').html(totalDonations);
+  }
+  
+  function parseCurrency(amount){
+    amount = ("" + amount).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "." });
+    return currency+amount;
   }
   
   function displayGoal() {
