@@ -9,33 +9,25 @@ $(document).ready(function(){
   var totalDonations = 0;
   var goal = 30000;
   
+  // On pageload variable
   var pageload = true;
   setTimeout(function(){
     pageload = false;
-    //$('.overlay').addClass("show animate-in");
   }, 1000);
   
+  // Donation added
   myDataRef.on('child_added', function(snapshot) {
     var donation = snapshot.val();
-    displayDonation(donation.name, donation.email, donation.amount, donation.message);
-  });
-
-  function displayDonation(name, email, amount, message) {
-    message = decodeURI(message);
-    name = decodeURI(name); 
-    appendDonation(
-      {
-        "name" : name,
-        "email" : email,
-        "amount" : amount,
-        "message" : message
-      }
-    )
-    upDateTotal(parseInt(amount));
+    donation.name = decodeURI(donation.name);
+    donation.message = decodeURI(donation.message);
+    appendDonation(donation);
+    if(pageload == false) triggerOverlay(donation);
+    upDateTotal(parseInt(donation.amount));
     upDateAmount();
     upDateWall();
-  };
+  });
   
+  // Append donation and sort donations by amount
   function appendDonation(donation) {
     donations.push(donation);
     donations.sort(function(a, b){
@@ -43,6 +35,7 @@ $(document).ready(function(){
     });
   }
   
+  // Update donation wall
   function upDateWall(){
     $('.stream').html('');
     for(i = 0; i < donations.length; i++) {
@@ -51,25 +44,30 @@ $(document).ready(function(){
     }
   }
   
+  // Update total donations
   function upDateTotal(amount) {
     totalAmount += amount;
     $('.js-amount').html(parseCurrency(totalAmount));
   }
   
+  // Update total amount donations
   function upDateAmount() {
     totalDonations++;
     $('.js-donations').html(totalDonations);
   }
   
+  // Parse currency
   function parseCurrency(amount){
     amount = ("" + amount).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "." });
     return currency+amount;
   }
   
+  // Display goal
   function displayGoal() {
     $('.js-goal').html(parseCurrency(goal));
   }
   
+  // Display QR
   function displayUrl() {
     $('.js-url').html(url);
     $('.js-qr').css({
@@ -77,12 +75,75 @@ $(document).ready(function(){
     });
   }
   
+  // Init wall
   function init() {
     displayGoal();
     displayUrl();
   }
   
   init();
+  
+  //
+  // Overlay Specific code
+  // ---------------------
+  
+  var overlay = false;
+  var overlayDuration = 4000;
+  var overlayBuffer = [];
+  
+  // Trigger overlay 
+  function triggerOverlay(donation) {
+    if(overlay == false){
+      
+      overlay = true;
+      showOverlay();
+      
+      fillOverlayWindow(donation);
+      showWindow();
+      
+      setTimeout(function(){
+        checkOverlayBuffer();
+      }, overlayDuration);
+      
+    } else {
+      overlayBuffer.push(donation);
+    }
+  }
+  
+  function fillOverlayWindow(donation) {
+    $('.js-overlay-amount').html(parseCurrency(donation.amount));
+    $('.js-overlay-message').html('"'+donation.message+'"');
+    $('.js-overlay-name').html(donation.name);
+  }
+  
+  function checkOverlayBuffer(){
+    hideWindow();
+    if(overlayBuffer.length == 0){
+      
+      setTimeout(function(){
+        hideOverlay();
+        overlay = false;
+      }, 1000);
+      
+    } else {
+      
+      setTimeout(function(){
+        showWindow();
+        donation = overlayBuffer.shift();
+        fillOverlayWindow(donation);
+        
+        setTimeout(function(){
+          checkOverlayBuffer();
+        }, overlayDuration);
+      }, 1000);
+    }
+  }
+  
+  function showOverlay(){ $('.overlay').addClass("show"); }
+  function hideOverlay(){ $('.overlay').removeClass("show"); }
+  
+  function showWindow(){ $('.overlay').removeClass("animate-out").addClass("animate-in"); }
+  function hideWindow(){ $('.overlay').removeClass("animate-in").addClass("animate-out"); }
 
 });
 
