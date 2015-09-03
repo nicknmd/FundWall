@@ -13,7 +13,7 @@ $(document).ready(function(){
   var pageload = true;
   setTimeout(function(){
     pageload = false;
-  }, 1000);
+  }, 3000);
   
   // Donation added
   myDataRef.on('child_added', function(snapshot) {
