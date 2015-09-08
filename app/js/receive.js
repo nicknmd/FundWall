@@ -8,6 +8,25 @@ $(document).ready(function(){
   var totalAmount = 0;
   var totalDonations = 0;
   var goal = 30000;
+  var subGoals =  [
+    {
+      "goal" : 5000,
+      "message" : "First goal"
+    },
+    {
+      "goal" : 10000,
+      "message" : "Second goal"
+    },
+    {
+      "goal" : 15000,
+      "message" : "Third goal"
+    },
+    {
+      "goal" : 20000,
+      "message" : "Third goal"
+    }
+  ];
+  var endTime = Math.floor(Date.now() / 1000) + ( 60 * 15 );
   
   // On pageload variable
   var pageload = true;
@@ -75,8 +94,28 @@ $(document).ready(function(){
     });
   }
   
+  // Display Time
+  function displayTime() {
+    function fixTime(time) {
+      var sec_num = parseInt(time, 10); // don't forget the second param
+      var hours   = Math.floor(sec_num / 3600);
+      var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+      var seconds = sec_num - (hours * 3600) - (minutes * 60);
+      if (hours   < 10) {hours   = "0"+hours;}
+      if (minutes < 10) {minutes = "0"+minutes;}
+      var time    = hours+':'+minutes;
+      return time;
+    };
+    setInterval(function(){
+      var currentTime = Math.floor(Date.now() / 1000);
+      var timeLeft = (currentTime < endTime)? endTime - currentTime : 0;
+      $('.js-time').html(fixTime(timeLeft));
+    }, 1000);  
+  }
+  
   // Init wall
   function init() {
+    displayTime();
     displayGoal();
     displayUrl();
   }
