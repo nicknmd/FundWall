@@ -66,6 +66,7 @@ $(document).ready(function(){
   function upDateTotal(amount) {
     totalAmount += amount;
     evaluateSubGoals();
+    updateProgressBar();
     $('.js-amount').html(parseCurrency(totalAmount));
   }
   
@@ -99,6 +100,12 @@ $(document).ready(function(){
   // Display QR
   function displayUrl() {
     $('.js-url').html(url);
+  }
+  
+  // Update progressBar
+  function updateProgressBar() {
+    height = (goal < totalAmount)? 100 : (totalAmount / (goal/100));
+    $('.js-progress-bar-fill').css({'height': height + '%'});
   }
   
   // Init wall
