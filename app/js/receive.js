@@ -42,7 +42,6 @@ $(document).ready(function(){
     appendDonation(donation);
     if(pageload == false) triggerOverlay(donation);
     upDateTotal(parseInt(donation.amount));
-    upDateAmount();
     upDateWall();
   });
   
@@ -66,13 +65,17 @@ $(document).ready(function(){
   // Update total donations
   function upDateTotal(amount) {
     totalAmount += amount;
+    evaluateSubGoals();
     $('.js-amount').html(parseCurrency(totalAmount));
   }
   
-  // Update total amount donations
-  function upDateAmount() {
-    totalDonations++;
-    $('.js-donations').html(totalDonations);
+  // Evaluate Sub Goals
+  function evaluateSubGoals() {
+    for(i = 0; i < subGoals.length; i++) {
+      if(subGoals[i].goal < totalAmount) {
+        $('.subGoals ul li#'+i).addClass('complete');
+      }
+    }
   }
   
   // Parse currency
@@ -86,38 +89,23 @@ $(document).ready(function(){
     $('.js-goal').html(parseCurrency(goal));
   }
   
+  // Evaluate Sub Goals
+  function displaySubGoals() {
+    for(i = 0; i < subGoals.length; i++) {
+      $('.subGoals ul').prepend('<li id="'+i+'"><div><img src="assets/img/checkmark.svg"/></div><h3>'+parseCurrency(subGoals[i].goal)+'</h3><p>'+subGoals[i].message+'</p></li>')
+    }
+  }
+  
   // Display QR
   function displayUrl() {
     $('.js-url').html(url);
-    $('.js-qr').css({
-      "background-image":"url('https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data="+url+"')"
-    });
-  }
-  
-  // Display Time
-  function displayTime() {
-    function fixTime(time) {
-      var sec_num = parseInt(time, 10); // don't forget the second param
-      var hours   = Math.floor(sec_num / 3600);
-      var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-      var seconds = sec_num - (hours * 3600) - (minutes * 60);
-      if (hours   < 10) {hours   = "0"+hours;}
-      if (minutes < 10) {minutes = "0"+minutes;}
-      var time    = hours+':'+minutes;
-      return time;
-    };
-    setInterval(function(){
-      var currentTime = Math.floor(Date.now() / 1000);
-      var timeLeft = (currentTime < endTime)? endTime - currentTime : 0;
-      $('.js-time').html(fixTime(timeLeft));
-    }, 1000);  
   }
   
   // Init wall
   function init() {
-    displayTime();
     displayGoal();
     displayUrl();
+    displaySubGoals();
   }
   
   init();

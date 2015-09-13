@@ -4,9 +4,9 @@
 
 header {
   position: relative;
-  background: $main-color center center no-repeat;
+  background: #FFFFFF center center no-repeat;
   background-size: cover;
-  color: #FFFFFF;
+  color: #5A5A5A;
   
   .mainbar {
     padding: 20px;
@@ -17,6 +17,12 @@ header {
       min-height: 100%;
       float: left;
       margin-right: 20px;
+    }
+    
+    .qr {
+      display: block;
+      height: 100%;
+      padding-left: 100%;
     }
     
     h1 {
@@ -30,7 +36,7 @@ header {
     h2 {
       a {
         text-decoration: none;
-        color:rgba(255,255,255,0.8);
+        color: $main-color;
         font-size: 160%;
         @include transition(font-size .5s);
       }
@@ -38,7 +44,8 @@ header {
   }
   
   .sidebar {
-    background: rgba(0,0,0,0.2);
+    background: #bf1a25;
+    color: #FFFFFF;
     
     div {
       position: relative;

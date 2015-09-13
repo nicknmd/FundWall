@@ -1,0 +1,84 @@
+//
+// Subgoals
+// ---------------------------------------------------------------------------
+
+.subGoals {
+  background: $main-color;
+  color: #FFF;
+  height: 84%;
+  
+  ul {
+    padding: 2% 0;
+  }
+  
+  li {
+    position: relative;
+    display: block;
+    padding: 4% 8% 4% 19%;
+    
+    h3 {
+      font-weight: 700;
+      font-size: 180%;
+      padding-bottom: 2%;
+    }
+    
+    p {
+      opacity: 0.7;
+      font-weight: 600;
+      font-size: 150%;
+    }
+    
+    div {
+      display: block;
+      position: absolute;
+      left: 8%; 
+      width: 7%;
+      margin-top: 2px;
+      box-shadow: inset 0px 2px 0px #FFF,  inset 0px -2px 0px #FFF,  inset 2px 0px 0px #FFF,  inset -2px 0px 0px #FFF;
+      border-radius: 200%;
+      
+      img {
+        float: left;
+        width: 100%;
+        opacity: 0;
+      }
+    }
+  
+    &.complete {
+      -webkit-animation: Highlight 2s forwards;
+      
+      div {
+        box-shadow: none;
+        
+        img {
+          opacity: 1;
+          -webkit-animation: Bounce 0.8s forwards;
+        }
+      }
+    }
+  }
+}
+
+@-webkit-keyframes Highlight {
+  0% {
+    background: #bf1a25;
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+@-webkit-keyframes Bounce {
+  0% {
+    @include transform(scale(2.5));
+  }
+  70% {
+    @include transform(scale(0.8));
+  }
+  85% {
+    @include transform(scale(1.2));
+  }
+  100% {
+    @include transform(scale(1));
+  }
+}
