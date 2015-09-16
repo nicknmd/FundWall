@@ -11,17 +11,17 @@
     background: #FFF;
     border-radius: 10px;  
     margin: 10px 50px;
-    padding: 25px 23% 25px 8%;
+    padding: 25px 23% 25px 3%;
     border: solid 2px #D5D5D5;
     @include box-sizing(border-box);
     @include transition(all 1s);
     
-    .ranking {
+    /*.ranking {
       font-size: 200%;
       position: absolute;
       left: 2%; top: 30px;
       color: #B1B1B1;
-    }
+    }*/
     
     small {
       position: absolute;
@@ -109,7 +109,7 @@
 @media screen and (max-width: 1200px) {
   .stream { 
     li {
-      padding: 15px 23% 15px 8%;
+      padding: 15px 23% 15px 3%;
       margin: 10px 30px;
       
       small {
@@ -127,7 +127,7 @@
   .stream { 
     li {
       margin: 20px 50px;
-      padding: 25px 23% 25px 8%;
+      padding: 25px 23% 25px 3%;
     }
     small {
       padding: 0px 40px 0px 0px;

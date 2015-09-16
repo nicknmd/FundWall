@@ -15,18 +15,27 @@
   li {
     position: relative;
     display: block;
-    padding: 4% 8% 4% 19%;
+    padding: 6% 8% 6% 19%;
     
     h3 {
       font-weight: 700;
       font-size: 180%;
       padding-bottom: 2%;
+      
     }
     
     p {
       opacity: 0.7;
+      font-weight: 400;
+      font-size: 180%;
+    }
+    
+    em {
+      display: block;
+      opacity: 0.9;
       font-weight: 600;
-      font-size: 150%;
+      font-size: 110%;
+      padding-top: 8px;
     }
     
     div {

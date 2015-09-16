@@ -7,23 +7,22 @@ $(document).ready(function(){
   var donations = [];
   var totalAmount = 0;
   var totalDonations = 0;
-  var goal = 30000;
+  var goal = 10000;
   var subGoals =  [
     {
       "goal" : 5000,
-      "message" : "First goal"
+      "message" : "23 Karat Gold Rush Chocolate Bar",
+      "sponsor" : "Chocomize"
     },
     {
       "goal" : 10000,
-      "message" : "Second goal"
-    },
-    {
-      "goal" : 15000,
-      "message" : "Third goal"
+      "message" : "Luscious Black Lace Glass Candle",
+      "sponsor" : "Joya Studio"
     },
     {
       "goal" : 20000,
-      "message" : "Third goal"
+      "message" : "Diamond Champagne Toast",
+      "sponsor" : "Evanova Jewelers"
     }
   ];
   var endTime = Math.floor(Date.now() / 1000) + ( 60 * 15 );
@@ -48,9 +47,9 @@ $(document).ready(function(){
   // Append donation and sort donations by amount
   function appendDonation(donation) {
     donations.push(donation);
-    donations.sort(function(a, b){
+    /*donations.sort(function(a, b){
       return parseFloat(a.amount) - parseFloat(b.amount);
-    });
+    });*/
   }
   
   // Update donation wall
@@ -58,7 +57,8 @@ $(document).ready(function(){
     $('.stream').html('');
     for(i = 0; i < donations.length; i++) {
       var ranking = donations.length - i;
-      $('.stream').prepend('<li><div class="ranking">#'+ranking+'</div><h3>'+donations[i].name+'</h3><small></small><p>'+donations[i].message+'</p><div class="amount"><span>'+parseCurrency(donations[i].amount)+'</span></div></li>');
+      //$('.stream').prepend('<li><div class="ranking">#'+ranking+'</div><h3>'+donations[i].name+'</h3><small></small><p>'+donations[i].message+'</p><div class="amount"><span>'+parseCurrency(donations[i].amount)+'</span></div></li>');
+      $('.stream').prepend('<li><h3>'+donations[i].name+'</h3><small></small><p>'+donations[i].message+'</p><div class="amount"><span>'+parseCurrency(donations[i].amount)+'</span></div></li>');
     }
   }
   
@@ -93,7 +93,7 @@ $(document).ready(function(){
   // Evaluate Sub Goals
   function displaySubGoals() {
     for(i = 0; i < subGoals.length; i++) {
-      $('.subGoals ul').prepend('<li id="'+i+'"><div><img src="assets/img/checkmark.svg"/></div><h3>'+parseCurrency(subGoals[i].goal)+'</h3><p>'+subGoals[i].message+'</p></li>')
+      $('.subGoals ul').prepend('<li id="'+i+'"><div><img src="assets/img/checkmark.svg"/></div><h3>'+parseCurrency(subGoals[i].goal)+'</h3><p>'+subGoals[i].message+'</p><em>- '+subGoals[i].sponsor+'</em></li>')
     }
   }
   
@@ -137,7 +137,7 @@ $(document).ready(function(){
       
       setTimeout(function(){
         checkOverlayBuffer();
-      }, overlayDuration);
+      }, overlayDuration + (donation.amount * 8));
       
     } else {
       overlayBuffer.push(donation);
@@ -168,7 +168,7 @@ $(document).ready(function(){
         
         setTimeout(function(){
           checkOverlayBuffer();
-        }, overlayDuration);
+        }, overlayDuration + (donation.amount * 8));
       }, 1000);
     }
   }
