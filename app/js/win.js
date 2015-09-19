@@ -12,7 +12,9 @@ var totalMoney = 0;
 var ticketsBowl = [];
 var totalTickets = 0;
 var listTickets = [];
+var shake = 1500;
 var winners = JSON.parse(localStorage.getItem('winners'));
+var active = false;
 winners = (winners == null)? [] : winners;
 
 
@@ -23,7 +25,7 @@ function getWinner() {
   var winner = randomWinner();
   var winnerData = ticketsBowl[winner];
   saveWinner(winner);
-  return winnerData;
+  return { id:winner, info:winnerData };
 }
 
 function randomWinner() {
@@ -42,7 +44,7 @@ function showWinners() {
   console.log('-WINNERS----------');
   for(var i = 0; i < winners.length; i++) {
     var winnerData = ticketsBowl[winners[i]];
-    console.log((i+1)+" - ticket: " + winners[i] +" - id: " + winnerData.id + " - name: " + winnerData.name + " - Amount: $" + winnerData.amount+ " - Message: $" + winnerData.amount);
+    console.log((i+1)+" - ticket: " + winners[i] +" - id: " + winnerData.id + " - name: " + winnerData.name + " - Amount: $" + winnerData.amount+ " - Message: " + winnerData.message);
   }
   console.log('-----------');
 }
@@ -56,6 +58,85 @@ function showTickets() {
 function resetAll() {
   localStorage.setItem('winners', null);
   winners = [];
+}
+  
+function showOverlay(){ $('.overlay').addClass("show"); }
+function hideOverlay(){ $('.overlay').removeClass("show"); }
+
+function showWindow(){ $('.overlay').removeClass("animate-out").addClass("animate-in"); }
+function hideWindow(){ $('.overlay').removeClass("animate-in").addClass("animate-out"); }
+
+function fillOverlay(winner) {
+  $('.js-ticket').html(winner.id);
+  $('.js-name').html(winner.info.name);
+  $('.js-email').html(winner.info.email);
+}
+
+function init() {
+  
+  $('.logo').on('click', function(){
+    if(active == false) {
+      active = true;
+      $('.logo').addClass('active');
+      $('.logo img').addClass('shake shake-vertical shake-constant');
+      setTimeout(function(){
+        $('.logo img').removeClass('shake-vertical').addClass('shake-horizontal');
+      }, shake);
+      setTimeout(function(){
+        $('.logo img').removeClass('shake-horizontal').addClass('shake-hard');
+      }, (shake*2));
+      setTimeout(function(){
+        $('.logo img').removeClass('shake-hard').addClass('shake-crazy');
+      }, (shake*3));
+      setTimeout(function(){
+        $('.logo').removeClass('active').addClass('explode');
+      }, (shake*4));
+      setTimeout(function(){
+        $('.logo img').removeClass('shake shake-crazy shake-constant');
+      }, (shake*5));
+      setTimeout(function(){
+        winner = getWinner();
+        fillOverlay(winner);
+        showOverlay();
+        showWindow();
+      }, (shake*5)+500);
+    }
+  });
+  
+  $('.overlay .window').on('click', function(){
+    hideWindow(); 
+    setTimeout(function(){
+      hideOverlay();
+      $('.logo').removeClass('active explode');
+      active = false;
+    }, 1000);
+  });
+  
+  $('.reset').on('click', function(){
+    if(confirm('reset winnners?') && active == false) {
+      resetAll();
+    }
+  });
+  
+  $('.winners').on('click', function(){
+    if(active == false) {
+      var visualWinners = [];
+      for(var i = 0; i < winners.length; i++) {
+        var winnerData = ticketsBowl[winners[i]];
+        visualWinners.push({
+          "number" : i+1,
+          "ticket" : winners[i],
+          "id": winnerData.id ,
+          "name" : winnerData.name,
+          "Amount" : winnerData.amount,
+          "message" : winnerData.message
+        })
+        //console.log((i+1)+" - ticket: " + winners[i] +" - id: " + winnerData.id + " - name: " + winnerData.name + " - Amount: $" + winnerData.amount+ " - Message: " + winnerData.message);
+      }
+      var link = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(visualWinners));
+      window.open(link);
+    }
+  });
 }
 
   
@@ -100,9 +181,16 @@ $(document).ready(function() {
     console.log('Total donations : ' + totalDonations);
     console.log('Total donatated : $' + totalMoney);
     console.log('Total tickets : ' + totalTickets);
+    console.log('Winners : ' + winners.length);
     console.log('-----------');
     
+    // Show
+    $('.js-donations').html(totalDonations);
+    $('.js-tickets').html(totalTickets);
+    
   });
+  
+  init();
   
 });
 
