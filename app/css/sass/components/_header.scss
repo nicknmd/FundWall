@@ -30,13 +30,14 @@ header {
       font-weight: 500;
       padding-bottom: 10px;
       line-height: 110%;
+      color: #222;
       @include transition(font-size .5s);
     }
     
     h2 {
       a {
         text-decoration: none;
-        color: $main-color;
+        color: #777;
         font-size: 160%;
         @include transition(font-size .5s);
       }
@@ -44,12 +45,16 @@ header {
   }
   
   .sidebar {
-    background: #bf1a25;
-    color: #FFFFFF;
+    background: #111 url("../img/background.png");
+    background-position: center top;
+    background-size: cover;
+    color: $main-color;
     
     div {
       position: relative;
       top: 50%;
+      background: rgba(0,0,0,0.6);
+      padding: 200px 0;
       @include transform(translateY(-50%));
     }
     

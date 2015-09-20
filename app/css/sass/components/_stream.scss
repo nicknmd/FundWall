@@ -43,7 +43,7 @@
       display: block;
       color: #969696;
       font-weight: 400;
-      font-size: 120%;
+      font-size: 140%;
       line-height: 120%;
       white-space: nowrap;
       overflow: hidden;
@@ -76,31 +76,31 @@
     }
   }
   li:first-child {
-    border-color: #3EB8DD;
+    border-color: #333;
     border-width: 6px;
     margin:  -5px 30px 10px 30px;
     
     .ranking {
-      color: #3EB8DD;
+      color: #333;
     }
     
     h3 {
-      color: #3EB8DD;
+      color: #333;
       font-size: 220%;
     }
     
     p {
-      color: #3EB8DD;
-      font-size: 140%;
+      color: #333;
+      font-size: 160%;
     }
     
     small {
-      color: #539F69;
+      color: #333;
       padding: 0px 38px 0px 0px;
     }
     
     .amount {
-      background: #3EB8DD;
+      background: #333;
       padding: 2px 8px;
     }
   }

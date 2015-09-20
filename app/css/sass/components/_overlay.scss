@@ -12,7 +12,7 @@
   .background {
     display: block;
     width: 100%; height: 100%;
-    background: rgba(223,223,223, 0.9);
+    background: rgba(0,0,0, 0.8);
     opacity: 0;
     @include transition(all 1s);
     
@@ -27,7 +27,7 @@
     width: 40%;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 0px 10px 50px rgba(0,0,0,0.1);
+    box-shadow: 0px 10px 80px rgba(0,0,0,0.7);
     @include transform( translateX(-50%) translateY(-50%));
     
     &.large {
@@ -44,8 +44,7 @@
   }
   
   header {
-    background: $main-color center center no-repeat;
-    background: #bf1a25;
+    background: center center no-repeat url('../../assets/img/overlay-background.png');
     background-size: cover;
     border-radius: 10px 10px 0 0;
     padding: 5% 0;
@@ -56,7 +55,7 @@
       padding: 3% 0 2% 0;
       font-size: 300%;
       font-weight: 600;
-      color: #FFF;
+      color: $main-color;
     }
   }
   
@@ -85,7 +84,7 @@
     border-radius: 0 0 10px 10px;
     border-top: 1px solid #DDD;
     font-style: italic;
-    color: $main-color;
+    color: #222;
     font-size: 140%;
     font-weight: 300;
   }

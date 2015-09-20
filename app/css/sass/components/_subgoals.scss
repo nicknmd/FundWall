@@ -4,8 +4,10 @@
 
 .subGoals {
   position: relative;
-  background: $main-color;
-  color: #FFF;
+  background: #222 url("../img/background.png");
+  background-position: center bottom;
+  background-size: cover;
+  color: $main-color;
   height: 84%;
   
   ul {
@@ -28,6 +30,7 @@
       opacity: 0.7;
       font-weight: 400;
       font-size: 180%;
+      color: #FFF;
     }
     
     em {
@@ -36,6 +39,7 @@
       font-weight: 600;
       font-size: 110%;
       padding-top: 8px;
+      color: #FFF;
     }
     
     div {
@@ -71,7 +75,7 @@
 
 @-webkit-keyframes Highlight {
   0% {
-    background: #bf1a25;
+    background: #000;
   }
   100% {
     background: transparent;
