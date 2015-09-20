@@ -7,21 +7,21 @@ $(document).ready(function(){
   var donations = [];
   var totalAmount = 0;
   var totalDonations = 0;
-  var goal = 10000;
+  var goal = 7500;
   var subGoals =  [
     {
-      "goal" : 5000,
-      "message" : "23 Karat Gold Rush Chocolate Bar",
+      "goal" : 1000,
+      "message" : "Willy Wonka",
       "sponsor" : "Chocomize"
     },
     {
-      "goal" : 10000,
-      "message" : "Luscious Black Lace Glass Candle",
-      "sponsor" : "Joya Studio"
+      "goal" : 3000,
+      "message" : "Wild Cards",
+      "sponsor" : "Blanc Kara hotel"
     },
     {
-      "goal" : 20000,
-      "message" : "Diamond Champagne Toast",
+      "goal" : 7500,
+      "message" : "Bubbles and Bling",
       "sponsor" : "Evanova Jewelers"
     }
   ];
