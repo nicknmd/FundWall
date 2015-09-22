@@ -6,7 +6,6 @@
 // Setup Variables
 // --------------
 var myDataRef = new Firebase('https://fundwall.firebaseio.com/donations'); 
-var donations = [];
 var totalDonations = 0;
 var totalMoney = 0;
 var ticketsBowl = [];
@@ -14,12 +13,56 @@ var totalTickets = 0;
 var listTickets = [];
 var shake = 1500;
 var winners = JSON.parse(localStorage.getItem('winners'));
+var donations = JSON.parse(localStorage.getItem('donations'));
 var active = false;
 winners = (winners == null)? [] : winners;
 
 
 // Main functions
 // --------------
+
+function convertDonations(donations) {
+  
+  for (var key in donations) {
+    if (donations.hasOwnProperty(key)) {
+      
+      // Set donation variable 
+      var donation = donations[key];
+      donation.id = key;
+  
+      // Define total tickets for this donation
+      var tickets = Math.floor(Math.floor(donation.amount/100)*5 + Math.floor((donation.amount - Math.floor(donation.amount/100)*100))/25);
+      
+      // Show info in console
+      listTickets.push("id: " + donation.id + " - name: " + donation.name + " - Amount: $" + donation.amount + " - Tickets: " + tickets);
+      
+      // Put tickets in ticketsBowl
+      var count = 0;
+      for(var i = 0; i < tickets; i++){
+        ticketsBowl.push(donation);
+      }
+      
+      // Update Totals
+      totalDonations ++;
+      totalTickets += tickets
+      totalMoney += parseInt(donation.amount);
+      
+    }
+  }
+  
+  // Feedback in console
+  console.log('-----------');
+  console.log('Total donations : ' + totalDonations);
+  console.log('Total donatated : $' + totalMoney);
+  console.log('Total tickets : ' + totalTickets);
+  console.log('Winners : ' + winners.length);
+  console.log('-----------');
+  
+  // Show
+  $('.js-donations').html(totalDonations);
+  $('.js-tickets').html(totalTickets);
+  
+}
 
 function getWinner() {
   var winner = randomWinner();
@@ -57,7 +100,12 @@ function showTickets() {
 
 function resetAll() {
   localStorage.setItem('winners', null);
+  localStorage.setItem('donations', null);
   winners = [];
+  donations = {};
+  console.log('--------------------------------------');
+  console.log('All local store data has been errased');
+  console.log('--------------------------------------');
 }
   
 function showOverlay(){ $('.overlay').addClass("show"); }
@@ -113,7 +161,7 @@ function init() {
   });
   
   $('.reset').on('click', function(){
-    if(confirm('reset winnners?') && active == false) {
+    if(confirm('Delete all local storage?') && active == false) {
       resetAll();
     }
   });
@@ -131,7 +179,6 @@ function init() {
           "Amount" : winnerData.amount,
           "message" : winnerData.message
         })
-        //console.log((i+1)+" - ticket: " + winners[i] +" - id: " + winnerData.id + " - name: " + winnerData.name + " - Amount: $" + winnerData.amount+ " - Message: " + winnerData.message);
       }
       var link = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(visualWinners));
       window.open(link);
@@ -144,51 +191,20 @@ function init() {
 // --------------
 $(document).ready(function() {
   
-  // Fetch all donations
-  
-  myDataRef.once("value", function(data) {
-    
-    donations = data.val();
-    
-    for (var key in donations) {
-      if (donations.hasOwnProperty(key)) {
-        
-        // Set donation variable 
-        var donation = donations[key];
-        donation.id = key;
-    
-        // Define total tickets for this donation
-        var tickets = Math.floor(Math.floor(donation.amount/100)*5 + Math.floor((donation.amount - Math.floor(donation.amount/100)*100))/25);
-        
-        // Show info in console
-        listTickets.push("id: " + donation.id + " - name: " + donation.name + " - Amount: $" + donation.amount + " - Tickets: " + tickets);
-        
-        // Put tickets in ticketsBowl
-        var count = 0;
-        for(var i = 0; i < tickets; i++){
-          ticketsBowl.push(donation);
-        }
-        
-        // Update Totals
-        totalDonations ++;
-        totalTickets += tickets
-        totalMoney += parseInt(donation.amount);
-        
-      }
-    }
-    
-    // Feedback in console
-    console.log('Total donations : ' + totalDonations);
-    console.log('Total donatated : $' + totalMoney);
-    console.log('Total tickets : ' + totalTickets);
-    console.log('Winners : ' + winners.length);
-    console.log('-----------');
-    
-    // Show
-    $('.js-donations').html(totalDonations);
-    $('.js-tickets').html(totalTickets);
-    
-  });
+  // Check if there already is a snapshot of the data
+  if(donations != null) {  
+    // Use snapshot data
+    console.log('Snapshot data is being used');
+    convertDonations(donations);
+  } else {
+    // Fetch donations from firebase and make snapshot
+    myDataRef.once("value", function(data) {
+      console.log('Firebase data is being used and converted into a snapshot');
+      donations = data.val();
+      localStorage.setItem('donations', JSON.stringify(donations));
+      convertDonations(donations);
+    });
+  }
   
   init();
   
