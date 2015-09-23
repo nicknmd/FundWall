@@ -36,6 +36,9 @@
       font-size: 200%;
       color: #707070;
       padding-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       @include transition(all 1s);
     }
     

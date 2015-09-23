@@ -61,12 +61,13 @@
   
   .qoute {
     background: #FFF;
-    padding: 7% 0;
+    padding: 7% 2%;
     text-align: center;
     
     p {
       color: #5A5A5A;
       font-size: 180%;
+      line-height: 150%;
       font-weight: 700;
       padding: 0 0 3% 0;
     }
@@ -74,6 +75,7 @@
     span {
       color: #979797;
       font-size: 150%;
+      line-height: 150%;
     }
   }
   
