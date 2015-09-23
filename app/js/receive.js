@@ -64,7 +64,8 @@ $(document).ready(function(){
   
   // Update total donations
   function upDateTotal(amount) {
-    totalAmount += amount;
+    amount = parseInt(amount);
+    if (isNaN(amount) != true) totalAmount += amount;
     evaluateSubGoals();
     updateProgressBar();
     $('.js-amount').html(parseCurrency(totalAmount));
