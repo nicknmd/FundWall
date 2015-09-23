@@ -21,7 +21,7 @@ $(document).ready(function(){
     },
     {
       "goal" : 7500,
-      "message" : "Bubbles and Bling",
+      "message" : "Diamond Champagne",
       "sponsor" : "Evanova Jewelers"
     }
   ];
